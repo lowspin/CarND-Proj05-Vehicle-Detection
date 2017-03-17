@@ -16,8 +16,8 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
+[image1]: ./output_images/hog_images/hog_car4.jpg
+[image2]: ./output_images/hog_images/hog_notcar3.jpg
 [image3]: ./examples/sliding_windows.jpg
 [image4]: ./examples/sliding_window.jpg
 [image5]: ./examples/bboxes_and_heat.png
@@ -26,12 +26,12 @@ The goals / steps of this project are the following:
 [video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+###  Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
 ###Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
 You're reading it! This project is roughly divided into three sections: 
 - Extract features using Histogram of Oriented Gradient (HOG), and other features
@@ -54,7 +54,7 @@ Here is an example of HOG features extracted for a `non-car` image:
 
 ![alt text][image2]
 
-More samples can be found [here]([here](https://github.com/lowspin/CarND-Proj05-Vehicle-Detection/tree/master/output_images/hog_images/).
+More samples can be found in this [folder](https://github.com/lowspin/CarND-Proj05-Vehicle-Detection/tree/master/output_images/hog_images/).
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
