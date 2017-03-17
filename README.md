@@ -62,12 +62,13 @@ I tried various combinations of parameters (`train_spat-hist-hog.py` lines 49-58
 
 The following accuracy scores were observed:
 
-| Configuration | Accuracy      | 
-|:-------------:|:-------------:| 
-| 578, 460      | 96.0%         | 
-| 702, 460      | 96.0%         |
-| 1088, 720     | 96.0%         |
-| 192, 720      | 96.0%         |
+| color_space   | orient        | pix_per_cell  | cell_per_block| hog_channel   | Accuracy      | 
+|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| RGB           | 9             | 8             | 2             | ALL           | 97.5%         |
+| YCrCb         | 9             | 8             | 2             | ALL           | **98.7%**     |
+| HSV           | 9             | 8             | 2             | 1             | 90.3%         |
+| HLS           | 9             | 8             | 2             | 2             | 89.3%         |
+| YUV           | 9             | 8             | 2             | ALL           | 98.7%         |
 
 In the end, I settled on the following configuration for HOG features:
 - color_space = 'YCrCb'
