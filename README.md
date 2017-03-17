@@ -58,7 +58,30 @@ More samples can be found in this [folder](https://github.com/lowspin/CarND-Proj
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters, in particular, the 
+I tried various combinations of parameters (`train_spat-hist-hog.py` lines 49-58), in particular, the `color_space` and `hog_channel` parameters. For example I experimented to see if I can get better results from the `saturation` channel of the HSV color space.
+
+This resulted in the following accuracy scores:
+
+| Configuration | Accuracy      | 
+|:-------------:|:-------------:| 
+| 578, 460      | 96.0%         | 
+| 702, 460      | 96.0%         |
+| 1088, 720     | 96.0%         |
+| 192, 720      | 96.0%         |
+
+In the end, I settled on the following configuration for HOG features:
+- color_space = 'YCrCb'
+- orient = 9
+- pix_per_cell = 8 
+- cell_per_block = 2 
+- hog_channel = 'ALL' 
+
+In addition, the following parameters are used for the color histogram (`lesson_functions.py` lines 44-52) and resized image (`lesson_functions.py` lines 38-42) features discussed in class:
+- spatial_size = (16, 16) 
+- hist_bins = 16 
+- spatial_feat = True 
+- hist_feat = True 
+- hog_feat = True 
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
