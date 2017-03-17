@@ -58,7 +58,7 @@ More samples can be found in this [folder](https://github.com/lowspin/CarND-Proj
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters (`train_spat-hist-hog.py` lines 49-58), in particular, the `color_space` and `hog_channel` parameters. For example I experimented to see if I can get better results from the `saturation` channel of the HSV color space.
+I tried various combinations of parameters (`train_spat-hist-hog.py` lines 49-58), in particular, the `color_space` and `hog_channel` parameters. For example I experimented to see if I can get better results from the `saturation` channel of the HSV and HLS color spaces.
 
 The following accuracy scores were observed:
 
@@ -88,13 +88,24 @@ The combined HOG and color features are stacked and normalized using `sklearn.pr
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using `sklearn.svm`'s `LinearSVC` object (`train_spat-hist-hog.py` lines 92 and 95). I have applied the standard data shuffling and train/test split of 80:20 using `sklearn.model_selection.train_test_split` (`train_spat-hist-hog.py` lines 84-86)
+I trained a linear SVM using `sklearn.svm`'s `LinearSVC` object (`train_spat-hist-hog.py` lines 92 and 95). I have applied the standard data shuffling and train/test split of 80:20 using `sklearn.model_selection.train_test_split` (`train_spat-hist-hog.py` lines 84-86). See previous section for the accuracy scores for some configuration settings.
 
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
+The sliding window search is implemented in the `find_cars()` function in the file `genimages.py` (lines 157-226). Instead of overlap, I define how many cells to step in `genimages.py` line 179, `cells_per_step = 2`. I've chosen six different scales to search - 0.5, 1.0, 1.5, 2.0, 2.5, 3.0. Since smaller scale matches only occur further out to the horizon, I further restrict the search location based on the scale, as follows:
+
+| scale         | xstart        | ystart        | xstop         | ystop         | 
+|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| 0.5           | 400           | 400           | max           | 450           |
+| 1.0           | 350           | 400           | max           | 530           |
+| 1.5           | 300           | 400           | max           | 580           |
+| 2.0           | 250           | 400           | max           | 600           |
+| 2.5           | 200           | 400           | max           | 650           |
+| 3.0           | 150           | 400           | max           | 700           |
+
+The overlapping search windows for all scales are plotted below for one of the test image:
 
 ![alt text][image3]
 
