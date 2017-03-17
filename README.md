@@ -1,8 +1,7 @@
 # CarND-Proj05-Vehicle-Detection
 
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
+## Background
+This repository contains my project report for the [Udacity Self-Driving Car nano-degree](https://www.udacity.com/drive) program's project 5 - Vehicle Detection. The original starting files and instructions can be found [here](https://github.com/udacity/CarND-Vehicle-Detection).
 ---
 
 **Vehicle Detection Project**
@@ -34,24 +33,28 @@ The goals / steps of this project are the following:
 
 ####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
-You're reading it!
+You're reading it! This project is roughly divided into three sections: 
+- Extract features using Histogram of Oriented Gradient (HOG), and other features
+- Implement a sliding window search to locate matches in single test images, 
+- Additional processing for time-sequence video frames, including accumulating detection over multiple frames.
 
 ###Histogram of Oriented Gradients (HOG)
 
 ####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
+The code for this step is contained in the files `train_spat-hist-hog.py` and `lesson_functions.py`. The main functions are `extract_features()` (`lesson_functions.py` lines 57-105) and `get_hog_features()` (`lesson_functions.py` lines 13-30). The actual heavy lifting of extracting the HOG feawtures is done using skimage's `skimage.feature.hog()` function.  
 
-I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
+I've used only the provided training data, which contains both `vehicle` and `non-vehicle` images assembled from a combination of the [GTI vehicle image database](http://www.gti.ssr.upm.es/data/Vehicle_database.html), the [KITTI vision benchmark suite](http://www.cvlibs.net/datasets/kitti/), and examples extracted from the project video itself. These data can be found in the original udacity [repo](https://github.com/udacity/CarND-Vehicle-Detection).
+
+Here is an example of HOG features extracted for a `car` image:
 
 ![alt text][image1]
 
-I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
-
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
-
+Here is an example of HOG features extracted for a `non-car` image:
 
 ![alt text][image2]
+
+More samples can be found [here]([here](https://github.com/lowspin/CarND-Proj05-Vehicle-Detection/tree/master/output_images/hog_images/).
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
