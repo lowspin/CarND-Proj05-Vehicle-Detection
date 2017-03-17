@@ -60,7 +60,7 @@ More samples can be found in this [folder](https://github.com/lowspin/CarND-Proj
 
 I tried various combinations of parameters (`train_spat-hist-hog.py` lines 49-58), in particular, the `color_space` and `hog_channel` parameters. For example I experimented to see if I can get better results from the `saturation` channel of the HSV color space.
 
-This resulted in the following accuracy scores:
+The following accuracy scores were observed:
 
 | Configuration | Accuracy      | 
 |:-------------:|:-------------:| 
@@ -83,9 +83,11 @@ In addition, the following parameters are used for the color histogram (`lesson_
 - hist_feat = True 
 - hog_feat = True 
 
+The combined HOG and color features are stacked and normalized using `sklearn.preprocessing.StandardScaler`'s `fit()` and `transform()` functions (`train_spat-hist-hog.py` lines 75 and 77).
+
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+I trained a linear SVM using `sklearn.svm`'s `LinearSVC` object (`train_spat-hist-hog.py` lines 92 and 95). I have applied the standard data shuffling and train/test split of 80:20 using `sklearn.model_selection.train_test_split` (`train_spat-hist-hog.py` lines 84-86)
 
 ### Sliding Window Search
 
