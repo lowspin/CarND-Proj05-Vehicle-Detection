@@ -285,8 +285,8 @@ def processOneFrame(img):
     labels = label(heatmap)
     draw_img = draw_labeled_bboxes(np.copy(img), labels)
 
-    return draw_img, labels, box_list, heatmap
-    # return draw_img
+    # return draw_img, labels, box_list, heatmap
+    return draw_img
 
 ###############################################################################
 # Test on single image
@@ -363,26 +363,26 @@ def processOneFrame(img):
 
 # Part 1 - Test Images
 # images = glob.glob('./test_images/*.jpg')
-# # images = glob.glob('./testframes/*.jpg')
+# # # images = glob.glob('./testframes/*.jpg')
 # for idx, fname in enumerate(images):
 #     # load image
 #     img = mpimg.imread(fname)
-
-    ##### test single images ######
-    # result = processOneFrame(img)
-    # plt.figure(figsize=(15,10))
-    # plt.imshow(result)
-    # outfname = 'result_' + str(idx) + '.jpg'
-    # plt.savefig(outfname)
-    # plt.close()
-
-    ##### multiple hot windows ####
-    # out_img, labels, box_list, heatmap = processOneFrame(img)
-    # plt.figure(figsize=(15,10))
-    # plt.imshow(draw_boxes(img, box_list))
-    # outfname = 'hotwindows_' + str(idx) + '.jpg'
-    # plt.savefig(outfname)
-    # plt.close()
+#
+#     ##### test single images ######
+#     # result = processOneFrame(img)
+#     # plt.figure(figsize=(15,10))
+#     # plt.imshow(result)
+#     # outfname = 'result_' + str(idx) + '.jpg'
+#     # plt.savefig(outfname)
+#     # plt.close()
+#
+#     ##### multiple hot windows ####
+#     out_img, labels, box_list, heatmap = processOneFrame(img)
+#     plt.figure(figsize=(15,6))
+#     plt.imshow(draw_boxes(img, box_list))
+#     outfname = 'hotwindows_' + str(idx) + '.jpg'
+#     plt.savefig(outfname)
+#     plt.close()
 
     ##### heatmaps #####
     # out_img, labels, box_list, heatmap = processOneFrame(img)
