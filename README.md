@@ -143,11 +143,13 @@ As observed, despite efforts to reduce the search area and optimize features, th
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 Here's a [link to my video result file](./result_project_video_frames7.mp4), or view it on [Youtube](https://youtu.be/BxmHD5Y3IbU)
 
-![alt text][video1]
-
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
+For each window scale, I recorded the positions of positive detections in each frame of the video (`genimages.py` line 264). Results for each window scale are added for each frame (`genimages.py` line 265).
+
+In order to reduce false positives, I implemented a python class called `VehTracker` (`trackers.py` lines 1-30), which is used to hold and combine the hot window positions in the past `nhistory` frames (`genimages.py` lines 268-270). In this way, results from seven frames were added to form the final positions used for detection. Correspondingly, the threshold for detection is increased from 1 to 7 to account for the increased occurences (`genimages.py` line 278).
+
+From the positive detections I created a heatmap (`genimages.py` line 275) and then thresholded that map (`genimages.py` line 278) to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected (`genimages.py` line 286).  
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
