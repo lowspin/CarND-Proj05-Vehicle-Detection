@@ -25,6 +25,7 @@ The goals / steps of this project are the following:
 [image7]: ./output_images/hotwindows_testimages/hotwindows_3.jpg
 [image8]: ./output_images/hotwindows_testimages/hotwindows_4.jpg
 [image9]: ./output_images/hotwindows_testimages/hotwindows_5.jpg
+[image10]: ./output_images/hotwindows_testimages/hotwindows_5.jpg
 [video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -132,7 +133,7 @@ As observed, despite efforts to reduce the search area and optimize features, th
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./result_project_video_frames7.mp4), or view it on [Youtube](https://youtu.be/BxmHD5Y3IbU)
+Here's a [link to my video result file](./result_project_video_frames7.mp4), or view it on [Youtube](https://youtu.be/BxmHD5Y3IbU)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
@@ -141,7 +142,7 @@ I recorded the positions of positive detections in each frame of the video.  Fro
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
-### Here are six frames and their corresponding heatmaps:
+### Here are seven frames and their corresponding heatmaps:
 
 ![alt text][image5]
 
