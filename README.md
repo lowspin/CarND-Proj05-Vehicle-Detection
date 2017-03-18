@@ -18,11 +18,13 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 [image1]: ./output_images/hog_images/hog_car4.jpg
 [image2]: ./output_images/hog_images/hog_notcar3.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
+[image3]: ./output_images/search_windows_all/search_windows_for_all_scales.jpg
+[image4]: ./output_images/hotwindows_testimages/hotwindows_0.jpg
+[image5]: ./output_images/hotwindows_testimages/hotwindows_1.jpg
+[image6]: ./output_images/hotwindows_testimages/hotwindows_2.jpg
+[image7]: ./output_images/hotwindows_testimages/hotwindows_3.jpg
+[image8]: ./output_images/hotwindows_testimages/hotwindows_4.jpg
+[image9]: ./output_images/hotwindows_testimages/hotwindows_5.jpg
 [video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -77,7 +79,7 @@ In the end, I settled on the following configuration for HOG features:
 - cell_per_block = 2 
 - hog_channel = 'ALL' 
 
-In addition, the following parameters are used for the color histogram (`lesson_functions.py` lines 44-52) and resized image (`lesson_functions.py` lines 38-42) features discussed in class:
+In addition, the following parameters are used for the color histogram (`lesson_functions.py` lines 44-52) and spatially binned color (`lesson_functions.py` lines 38-42) features discussed in class:
 - spatial_size = (16, 16) 
 - hist_bins = 16 
 - spatial_feat = True 
@@ -109,11 +111,22 @@ The overlapping search windows for all scales are plotted below for one of the t
 
 ![alt text][image3]
 
+The individual images can be found [here](./output_images/search_windows_all/)
+
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on all six scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector.  Here are some example images:
 
 ![alt text][image4]
+![alt text][image5]
+![alt text][image6]
+![alt text][image7]
+![alt text][image8]
+![alt text][image9]
+
+
+As observed, despite efforts to reduce the search area and optimize features, there are some false positive detections. Fortunately, we are working with sequential frames in our test video and we can make detection more reliable by including multiple frames in our detection. This is discussed in the next section.
+
 ---
 
 ### Video Implementation
@@ -137,7 +150,6 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
 ![alt text][image7]
-
 
 
 ---
