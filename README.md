@@ -25,7 +25,15 @@ The goals / steps of this project are the following:
 [image7]: ./output_images/hotwindows_testimages/hotwindows_3.jpg
 [image8]: ./output_images/hotwindows_testimages/hotwindows_4.jpg
 [image9]: ./output_images/hotwindows_testimages/hotwindows_5.jpg
-[image10]: ./output_images/hotwindows_testimages/hotwindows_5.jpg
+[image10]: ./output_images/heatmap_sequence/carpos_heatmap_0.jpg
+[image11]: ./output_images/heatmap_sequence/carpos_heatmap_1.jpg
+[image12]: ./output_images/heatmap_sequence/carpos_heatmap_2.jpg
+[image13]: ./output_images/heatmap_sequence/carpos_heatmap_3.jpg
+[image14]: ./output_images/heatmap_sequence/carpos_heatmap_4.jpg
+[image15]: ./output_images/heatmap_sequence/carpos_heatmap_5.jpg
+[image16]: ./output_images/heatmap_sequence/carpos_heatmap_6.jpg
+[image17]: ./output_images/heatmap_sequence/final_heatmap_6.jpg
+[image18]: ./output_images/heatmap_sequence/result_6.jpg
 [video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -135,6 +143,7 @@ As observed, despite efforts to reduce the search area and optimize features, th
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 Here's a [link to my video result file](./result_project_video_frames7.mp4), or view it on [Youtube](https://youtu.be/BxmHD5Y3IbU)
 
+![alt text][video1]
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
@@ -144,13 +153,19 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ### Here are seven frames and their corresponding heatmaps:
 
-![alt text][image5]
+![alt text][image10]
+![alt text][image11]
+![alt text][image12]
+![alt text][image13]
+![alt text][image14]
+![alt text][image15]
+![alt text][image16]
 
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image6]
+### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all seven frames:
+![alt text][image17]
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image7]
+![alt text][image18]
 
 ---
 
