@@ -175,5 +175,16 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+The main techniques used in this project were 
+1) using HOG plus spatially binned color and histograms of color as the features, 
+2) using support vector machine to train and classify labeled dataset using the identified featues and
+3) using a sliding window search algorithm to locate probable vehicles.
+
+Each of these steps/techniques has its own issue and limitation:
+
+1) Although the features are proven to work in prior application, I can't help but wonder if other features might work better. We could even use a deep learning approach with convolution network to train and classify the images. A lot of time was spent tuning the feature parameters, but the results are still not fully robust, especially for still images. I notice that some of the false positives are due to areas with high contrast regions, such as shadows and guard rails. To make it more robust, I would experiment with more features, perhaps with different weights.
+
+2) Here I think the choice of support vector machines is actually very appropriate as it is a simple binary classification problem. However, I'm getting some false positives despite the simplicity of the classifier. To make the technique more robust, I would use more training data, especially for non-car category, in order to reduce false positives. I would also train the car category images separately by left, right or straight (back of car) orientation and apply them separate to the left, right and center regions of the camera captured images.
+
+3) The sliding window technique with hot windows heatmaps is a logical approach, however a lot depends on the choice of scale, overlap and region to search. These also changes with the curvature of the road and other conditions, such as if we're travelling on a one- or two-way street. Hence, to make it more robust, I would experiment with more window settings, including configuratin for multiple frame accumulation and thresholds.
 
